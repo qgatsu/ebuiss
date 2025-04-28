@@ -22,7 +22,7 @@ class Visualizer:
         else:
             melted["value"] = melted["ret"]
 
-        # Plotlyで可視化（heightやmarginは指定しない）
+        # Plotlyで可視化
         fig = px.line(
             melted,
             x="datetime",
@@ -31,11 +31,11 @@ class Visualizer:
             title=f"{self.strategy_name} - Segment Performance"
         )
 
-        # X軸のフォーマットだけ調整（年月表示）
+
         fig.update_layout(
             xaxis=dict(
                 tickformat="%Y-%m",
-                tickangle=0  # ラベルを水平に
+                tickangle=0 
             )
         )
 

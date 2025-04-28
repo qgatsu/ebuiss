@@ -27,10 +27,10 @@ class Backtester:
         """
         戦略に基づくポジションと、週次対数リターンにより資産推移を計算。
         """
-        # 戦略からポジションを取得（週次）
+        # 戦略からポジションを取得
         positions_df = self.strategy.generate_positions(self.prices, self.factor_df)
 
-        # 銘柄（列）の共通部分だけに整合（ポジション側で余計な銘柄があってもOK）
+        # 銘柄の共通部分だけに整合
         common_cols = self.returns_df.columns.intersection(positions_df.columns)
         positions_df = positions_df[common_cols]
         returns_df = self.returns_df[common_cols]

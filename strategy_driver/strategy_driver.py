@@ -16,7 +16,6 @@ class StrategyDriver:
         base_dir = os.path.dirname(__file__)
         self.strategy_dir = os.path.abspath(os.path.join(base_dir, "..", strategy_folder_name))
 
-        # フォルダがなければ作る
         os.makedirs(self.strategy_dir, exist_ok=True)
 
     def load_strategy(self, strategy_name: str):

@@ -24,7 +24,7 @@ class Ebuiss:
         self.metrics = None
         self.chart = None
 
-    ## --- DB操作系（ファクター・通常データ登録/参照） ---
+    ## --- DB操作 ---
 
     def register_factors(self, df: pd.DataFrame, prefix: str):
         """
@@ -50,7 +50,7 @@ class Ebuiss:
         """
         return self.db.datatable()
 
-    ## --- Strategy管理系（ロード/登録/一覧） ---
+    ## --- Strategy管理 ---
 
     def register_strategy(self, file_path: str, strategy_name: str):
         """
@@ -70,7 +70,7 @@ class Ebuiss:
         """
         return self.strategy_driver.load_strategy(strategy_name)
 
-    ## --- Backtester操作系（実行/評価/可視化） ---
+    ## --- Backtester操作 ---
 
     def run_backtest(self, price_name: str, strategy_name: str, factor_name: str = None, start_date: str = None, end_date: str = None):
         """
@@ -87,14 +87,11 @@ class Ebuiss:
         price_df = self.db.get(price_name)
         factor_df = self.db.get_factor(factor_name) if factor_name else None
 
-        # --- インデックスをDatetimeIndexに強制変換 ---
+        # インデックスをDatetimeIndexに変換
         price_df.index = pd.to_datetime(price_df.index)
-
-        # display(factor_df)
 
         if factor_df is not None:
             factor_df.index = pd.to_datetime(factor_df.index)
-        # -------------------------------------------------
 
         # 日付フィルタリング
         if start_date:

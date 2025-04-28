@@ -1,9 +1,5 @@
-# ファイル: Ebuiss_admin/ebuissdb.py
-
 import pandas as pd
 from ..hisui.hisuistore import HisuiDB
-
-from IPython.display import display
 
 class EbuissDB(HisuiDB):
     def __init__(self):
@@ -19,7 +15,7 @@ class EbuissDB(HisuiDB):
             df (pd.DataFrame): MultiIndex(index=[date, ticker] など), columns=[factor1, factor2,...]
             prefix (str): ファクター名に付ける接頭辞
         """
-        # インデックス名を矯正
+        
         if isinstance(df.index, pd.MultiIndex):
             df.index.names = ["ticker","date"]
         else:
